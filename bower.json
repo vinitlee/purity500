@@ -1,0 +1,22 @@
+{
+  "name": "purity",
+  "version": "0.0.0",
+  "homepage": "https://github.com/vinitlee/purity500",
+  "authors": [
+    "Vincent Lee <vinitlee@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "js-url": "~1.8.6",
+    "jquery": "~2.1.4",
+    "uri.js": "~1.15.2"
+  }
+}
