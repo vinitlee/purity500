@@ -1,0 +1,28 @@
+//- index.jade
+extends layout
+
+block content
+  .onboard
+    button.googleAuth Google
+  .app(layout flex vertical)
+    .statusbar(layout justified)
+      .section(flex)
+        | Section 
+        span.number 0
+        | : 
+        span.text
+      .score
+        span.calculated
+        span %
+      button.signout Sign out of 
+        span.name Vincent Lee
+    .view(flex layout vertical)
+      .question(flex)
+        .number 00
+        span.fullText Have you ever 
+          span.text 0000
+        div
+          span.antagonism
+      .response(layout center-center)
+        span.mark done.
+        span.unmark i lied.

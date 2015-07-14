@@ -1,0 +1,89 @@
+@require(layout)
+
+// @import url("http://fonts.googleapis.com/css?family=Playfair+Display:400,700,400italic,700italic")
+// @import url("http://fonts.googleapis.com/css?family=Prata")
+c00 = rgb(43, 48, 59)
+c01 = rgb(52, 61, 70)
+c02 = rgb(79, 91, 102)
+c03 = rgb(101, 115, 126)
+c04 = rgb(167, 173, 186)
+c05 = rgb(192, 197, 206)
+c06 = rgb(223, 225, 232)
+c07 = rgb(239, 241, 245)
+c08 = rgb(191, 97, 106)
+c09 = rgb(208, 135, 112)
+c0A = rgb(235, 203, 139)
+c0B = rgb(163, 190, 140)
+c0C = rgb(150, 181, 180)
+c0D = rgb(143, 161, 179)
+c0E = rgb(180, 142, 173)
+c0F = rgb(171, 121, 103)
+
+::selection
+  // background-color rgba(255,255,255,0.999)
+  background-color transparentify(c08,0.9)
+  color c07
+
+body
+  // font-family "Times New Roman",Times,serif
+  font-family Menlo,monospace
+  background c07
+  color c00
+  overflow hidden
+
+.onboard
+  display none
+
+.statusbar
+  white-space nowrap 
+  color c03
+  background c05 
+  padding 5px 40px
+  .section
+    overflow hidden
+    text-overflow ellipsis
+
+.view
+  .question
+    display block
+    color c00
+    padding 20px 40px
+    font-size 18pt
+    max-width 20em
+    line-height 2em
+    .number
+      font-size 1.4em 
+      font-weight bold
+    .fullText
+      background-color c06
+      padding 0.1em 0.6em 0.1em 0.3em
+    .antagonism
+      display none
+      background-color c02
+      color c00
+      padding 0.1em 0.6em 0.1em 0.3em
+        
+  .response
+    cursor pointer
+    background c00
+    color c07
+    height 100px
+    .unmark
+      display none 
+    .mark
+      display block
+  
+  &.done
+    background-color c00
+    .question
+      color c07
+      .fullText
+        background-color c08
+      .antagonism
+        display inline
+    .response
+      background-color c08
+      .unmark
+        display block
+      .mark
+        display none 
