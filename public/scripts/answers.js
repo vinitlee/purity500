@@ -16,7 +16,9 @@
         this.numAn++;
         this.answers[i] = this.answers[i] || false;
       }
-      this.recover();
+      if (localStorage['answers_list']) {
+        this.recover();
+      }
       this.score();
     }
 

@@ -6,7 +6,8 @@ class Answers
     for i,s of @test.map
       @numAn++
       @answers[i] = @answers[i] or false
-    @recover()
+    if localStorage['answers_list']
+      @recover()
     @score()
   score: ->
     s = 0
