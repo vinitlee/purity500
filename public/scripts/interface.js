@@ -1,5 +1,5 @@
 (function() {
-  var current, drawState, goTo, n, render, savePlace, toggleAnswer;
+  var current, drawState, goTo, hammertime, n, render, savePlace, tinderAnswer, toggleAnswer;
 
   current = parseInt(localStorage['interface_place']) || 1;
 
@@ -53,8 +53,20 @@
   };
 
   toggleAnswer = function() {
-    mainAnswers.toggle(current);
-    return drawState(current);
+    mainAnswers.toggle(Math.floor(current));
+    return drawState(Math.floor(current));
+  };
+
+  tinderAnswer = function(ans) {
+    if (ans) {
+      mainAnswers.done(Math.floor(current));
+    } else {
+      mainAnswers.undone(Math.floor(current));
+    }
+    drawState(Math.floor(current));
+    return setTimeout(function() {
+      return render(1);
+    }, 200);
   };
 
   $('.response').click(toggleAnswer);
@@ -102,6 +114,48 @@
         return;
     }
     return e.originalEvent.preventDefault();
+  });
+
+  $('body').on('swiperight', function() {
+    return render(1);
+  });
+
+  $('body').on('swipeleft', function() {
+    return render(-1);
+  });
+
+  $('body').on('tap', function() {
+    return console.log("Tapped");
+  });
+
+  hammertime = new Hammer($('body')[0]);
+
+  hammertime.on('pandown', function(e) {
+    return render(-1 / 5);
+  });
+
+  hammertime.on('panup', function(e) {
+    return render(1 / 5);
+  });
+
+  hammertime.on('swipedown', function(e) {
+    return render(-1);
+  });
+
+  hammertime.on('swipeup', function(e) {
+    return render(1);
+  });
+
+  hammertime.on('swiperight', function(e) {
+    return tinderAnswer(true);
+  });
+
+  hammertime.on('swipeleft', function(e) {
+    return tinderAnswer(false);
+  });
+
+  hammertime.on('tap', function(e) {
+    return toggleAnswer();
   });
 
 }).call(this);

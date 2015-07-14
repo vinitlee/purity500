@@ -35,8 +35,17 @@ drawState = (i) ->
     $('.view').removeClass('done')
 
 toggleAnswer = ->
-  mainAnswers.toggle(current)
-  drawState(current)
+  mainAnswers.toggle(Math.floor(current))
+  drawState(Math.floor(current))
+tinderAnswer = (ans) ->
+  if ans
+    mainAnswers.done(Math.floor(current))
+  else
+    mainAnswers.undone(Math.floor(current))
+  drawState(Math.floor(current))
+  setTimeout( ->
+    render(1)
+  ,200)
 
 $('.response').click(toggleAnswer)
 
@@ -61,3 +70,15 @@ $(window).keydown (e) ->
       # console.log e.which
       return
   e.originalEvent.preventDefault()
+$('body').on 'swiperight',() -> render(1)
+$('body').on 'swipeleft',() -> render(-1)
+$('body').on 'tap',() -> console.log "Tapped"
+
+hammertime = new Hammer($('body')[0])
+hammertime.on 'pandown', (e) -> render(-1/5)
+hammertime.on 'panup', (e) -> render(1/5)
+hammertime.on 'swipedown', (e) -> render(-1)
+hammertime.on 'swipeup', (e) -> render(1)
+hammertime.on 'swiperight', (e) -> tinderAnswer(true)
+hammertime.on 'swipeleft', (e) -> tinderAnswer(false)
+hammertime.on 'tap', (e) -> toggleAnswer()
